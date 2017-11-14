@@ -1,0 +1,35 @@
+.about-short .container h3 {
+    text-align: center;
+    margin-left: -200px;
+    visibility: hidden;
+}
+
+.about-short .container h3:after {
+
+    content: 'In Memory Of';
+    visibility: visible;
+}
+
+.about-short .container p {
+    text-align: center;
+}
+
+.container .heading h3 {
+    text-align: center;
+    margin-left: -200px;
+    visibility: hidden;
+}
+
+.hero .heading h3:after {
+
+    content: 'In Memory Of';
+    visibility: visible;
+}
+
+.hero .heading p {
+    text-align: center;
+}
+
+/* place stuff above here */
+
+@import 'application';
