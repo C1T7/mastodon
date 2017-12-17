@@ -37,6 +37,11 @@ class PostStatusService < BaseService
     process_mentions_service.call(status)
     process_hashtags_service.call(status)
 
+    # Queue posts for removal in x days
+
+    removal_delay = (90)
+    RemovalWorker.perform_in(removal_delay.days, status.id)    
+
     LinkCrawlWorker.perform_async(status.id) unless status.spoiler_text?
     DistributionWorker.perform_async(status.id)
     Pubsubhubbub::DistributionWorker.perform_async(status.stream_entry.id)
