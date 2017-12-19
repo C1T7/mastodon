@@ -30,6 +30,41 @@
     text-align: center;
 }
 
+/* above here is memorium */
+/* below here is post columns */
+
+.status__info {
+    height: 62px;
+    /* padding-left: 31px; */
+    
+    display: flex;
+    flex-flow: column;
+}
+
+.status__info .status__display-name {
+    margin-right: 0px
+}
+
+.display-name__account {
+    display: block;
+}
+
+.status__relative-time {
+    order: 3;
+}
+
+.status__avatar {
+    top: 11px;
+}
+
+@media screen and (min-width: 1300px) {
+    .column {
+        flex-grow: 1 !important;
+        max-width: 24%;
+                                        }}
+
+
+
 /* place stuff above here */
 
 @import 'application';
