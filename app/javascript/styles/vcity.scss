@@ -6,7 +6,7 @@
 
 .about-short .container h3:after {
 
-    content: 'In Memory Of';
+    content: 'vCity Expectations';
     visibility: visible;
 }
 
@@ -22,7 +22,7 @@
 
 .hero .heading h3:after {
 
-    content: 'In Memory Of';
+    content: 'vCity Expectations';
     visibility: visible;
 }
 
@@ -30,7 +30,7 @@
     text-align: center;
 }
 
-/* above here is memorium */
+/* above here is rules mods */
 /* below here is post columns */
 
 .status__info {
@@ -66,5 +66,5 @@
 
 
 /* place stuff above here */
-
+/* below has to be last line */
 @import 'application';
