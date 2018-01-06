@@ -1758,7 +1758,8 @@
   position: absolute;
   top: 0;
   left: 0;
-  background: lighten($ui-base-color, 13%) url('../images/wave-drawer.png') no-repeat bottom / 100% auto;
+  background: lighten($ui-base-color, 13%);
+  /* background: lighten($ui-base-color, 13%) url('../images/wave-drawer.png') no-repeat bottom / 100% auto; */
   box-sizing: border-box;
   padding: 0;
   display: flex;
@@ -1772,11 +1773,14 @@
     background: $ui-base-color;
   }
 
+/* get rid of the furry airplane flier
   > .mastodon {
     background: url('../images/mastodon-ui.png') no-repeat left bottom / contain;
     flex: 1;
-  }
-}
+  } 
+get rid of the furry airplane flier */
+
+} 
 
 .pseudo-drawer {
   background: lighten($ui-base-color, 13%);
