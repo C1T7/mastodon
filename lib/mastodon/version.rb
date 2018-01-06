@@ -17,7 +17,7 @@ module Mastodon
     end
 
     def pre
-      nil
+      '-vcity'
     end
 
     def flags
