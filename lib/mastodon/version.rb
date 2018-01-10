@@ -13,7 +13,7 @@ module Mastodon
     end
 
     def patch
-      3
+      '3'
     end
 
     def pre
@@ -33,7 +33,7 @@ module Mastodon
     end
 
     def source_base_url
-      'https://github.com/tootsuite/mastodon'
+      'https://github.com/C1T7/mastodon'
     end
 
     # specify git tag or commit hash here
