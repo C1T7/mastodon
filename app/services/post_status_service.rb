@@ -39,7 +39,7 @@ class PostStatusService < BaseService
 
     # Queue posts for removal in x days
 
-    removal_delay = (90)
+    removal_delay = (365)
     RemovalWorker.perform_in(removal_delay.days, status.id)    
 
     LinkCrawlWorker.perform_async(status.id) unless status.spoiler_text?
