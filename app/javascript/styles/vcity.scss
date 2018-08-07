@@ -1,0 +1,68 @@
+.about-short .container h3 {
+    text-align: center;
+    margin-left: -200px;
+    visibility: hidden;
+}
+
+.about-short .container h3:after {
+
+    content: 'vCity Expectations';
+    visibility: visible;
+}
+
+.about-short .container p {
+    text-align: center;
+}
+
+.container .heading h3 {
+    text-align: center;
+    margin-left: -200px;
+    visibility: hidden;
+}
+
+.hero .heading h3:after {
+
+    content: 'vCity Expectations';
+    visibility: visible;
+}
+
+.hero .heading p {
+    text-align: center;
+}
+
+/* above here is rules mods */
+/* below here is post columns */
+
+.status__info {
+    height: 62px;
+    /* padding-left: 31px; */
+    
+    display: flex;
+    flex-flow: column;
+}
+
+.status__info .status__display-name {
+    margin-right: 0px
+}
+
+.display-name__account {
+    display: block;
+}
+
+.status__relative-time {
+    order: 3;
+}
+
+.status__avatar {
+    top: 11px;
+}
+
+@media screen and (min-width: 1300px) {
+    .column {
+        flex-grow: 1 !important;
+        max-width: 24%;
+                                        }}
+
+/* place stuff above here */
+/* below has to be last line */
+@import 'application';
