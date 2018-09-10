@@ -1,44 +1,47 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
+class StatusLengthValidator < ActiveModel::Validator
+  MAX_CHARS = 65536
+  MAX_UNCUT_CHARS = 512
 
-describe StatusLengthValidator do
-  describe '#validate' do
-    it 'does not add errors onto remote statuses'
-    it 'does not add errors onto local reblogs'
+  def validate(status)
+    return unless status.local? && !status.reblog?
+    status.errors.add(:text, I18n.t('statuses.over_character_limit', max: MAX_CHARS)) if too_long?(status)
+    status.errors.add(:text, I18n.t('statuses.over_uncut_character_limit', max: MAX_UNCUT_CHARS)) if too_long_uncut?(status)
+  end
 
-    it 'adds an error when content warning is over 500 characters' do
-      status = double(spoiler_text: 'a' * 520, text: '', errors: double(add: nil), local?: true, reblog?: false)
-      subject.validate(status)
-      expect(status.errors).to have_received(:add)
-    end
+  private
 
-    it 'adds an error when text is over 500 characters' do
-      status = double(spoiler_text: '', text: 'a' * 65536, errors: double(add: nil), local?: true, reblog?: false)
-      subject.validate(status)
-      expect(status.errors).to have_received(:add)
-    end
+  def too_long?(status)
+    countable_length(status) > MAX_CHARS
+  end
 
-    it 'adds an error when text and content warning are over 500 characters total' do
-      status = double(spoiler_text: 'a' * 250, text: 'b' * 65536, errors: double(add: nil), local?: true, reblog?: false)
-      subject.validate(status)
-      expect(status.errors).to have_received(:add)
-    end
+  def too_long_uncut?(status)
+    (countable_uncut_length(status) > MAX_UNCUT_CHARS) && (countable_spoiler_length(status) < 1)
+  end
 
-    it 'counts URLs as 23 characters flat' do
-      text   = ('a' * 65536) + " http://#{'b' * 30}.com/example"
-      status = double(spoiler_text: '', text: text, errors: double(add: nil), local?: true, reblog?: false)
+  def countable_length(status)
+    total_text(status).mb_chars.grapheme_length
+  end
 
-      subject.validate(status)
-      expect(status.errors).to_not have_received(:add)
-    end
+  def countable_uncut_length(status)
+    countable_text(status).mb_chars.grapheme_length
+  end
 
-    it 'counts only the front part of remote usernames' do
-      text   = ('a' * 65536) + " @alice@#{'b' * 30}.com"
-      status = double(spoiler_text: '', text: text, errors: double(add: nil), local?: true, reblog?: false)
+  def countable_spoiler_length(status)
+    status.spoiler_text.mb_chars.grapheme_length
+  end
 
-      subject.validate(status)
-      expect(status.errors).to_not have_received(:add)
+  def total_text(status)
+    [status.spoiler_text, countable_text(status)].join
+  end
+
+  def countable_text(status)
+    return '' if status.text.nil?
+
+    status.text.dup.tap do |new_text|
+      new_text.gsub!(FetchLinkCardService::URL_PATTERN, 'x' * 23)
+      new_text.gsub!(Account::MENTION_RE, '@\2')
     end
   end
 end
