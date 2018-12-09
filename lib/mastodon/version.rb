@@ -13,7 +13,7 @@ module Mastodon
     end
 
     def patch
-      5
+      5-master-2
     end
 
     def pre

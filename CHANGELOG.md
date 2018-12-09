@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Changelog
 =========
 
@@ -198,4 +199,4 @@ All notable changes to this project will be documented in this file.
 - Fix some local images not having their EXIF metadata stripped on upload (#8714)
 - Fix being able to enable a disabled relay via ActivityPub Accept handler (#8864)
 - Bump nokogiri from 1.8.4 to 1.8.5 (#8881)
-- Fix being able to report statuses not belonging to the reported account (#8916)
+
