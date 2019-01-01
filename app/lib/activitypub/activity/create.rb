@@ -162,6 +162,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     account = account_from_uri(tag['href'])
     account = ::FetchRemoteAccountService.new.call(tag['href'], id: false) if account.nil?
 
+
     return if account.nil?
 
     @mentions << Mention.new(account: account, silent: false)

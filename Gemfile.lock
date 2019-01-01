@@ -417,7 +417,7 @@ GEM
       pry (>= 0.10.4)
     public_suffix (3.0.3)
     puma (3.12.0)
-    pundit (2.0.0)
+    pundit (2.0.0
       activesupport (>= 3.0.0)
     raabro (1.1.6)
     rack (2.0.5)
@@ -727,6 +727,7 @@ DEPENDENCIES
   pry-byebug (~> 3.6)
   pry-rails (~> 0.3)
   puma (~> 3.12)
+<<<<<<< HEAD
   pundit (~> 2.0)
   rack-attack (~> 5.4)
   rack-cors (~> 1.0)
