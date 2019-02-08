@@ -65,6 +65,11 @@ class PostStatusService < BaseService
     process_mentions_service.call(@status)
   end
 
+    # Queue posts for removal in x days
+
+    removal_delay = (365)
+    RemovalWorker.perform_in(removal_delay.days, status.id) 
+
   def schedule_status!
     status_for_validation = @account.statuses.build(status_attributes)
     if status_for_validation.valid?
